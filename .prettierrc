@@ -1,0 +1,7 @@
+{
+   "singleQuote": true,
+   "semi": true,
+   "trailingCommaPHP": true,
+   "braceStyle": "psr-2",
+   "printWidth": 80
+}
