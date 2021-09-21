@@ -12,6 +12,27 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-    .postCss('resources/css/app.css', 'public/css', [
-        //
-    ]);
+   .sourceMaps(!mix.inProduction(), 'source-map')
+   .extract()
+   .sass('resources/css/app.scss', 'public/css')
+   .copy('resources/assets/images', 'public/images')
+   .options({
+      processCssUrls: mix.inProduction(),
+      postCss: [require('autoprefixer')],
+   })
+   .disableSuccessNotifications();
+
+if (mix.inProduction()) {
+   mix.version();
+} else {
+   mix.browserSync({
+      proxy: process.env.APP_URL,
+      files: [
+         'resources/views/**/*',
+         'config/**/*',
+         // 'public/**/*',
+         'public/js/app.js',
+         'public/css/app.css',
+      ],
+   });
+}
