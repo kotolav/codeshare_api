@@ -47,16 +47,18 @@ class CodewarsCrawler
    /**
     * Get solved challenges with cookies
     *
-    * @param $cookies
+    * @param string $cookies
     *
     * @return array
     * @throws AuthFailException
     * @throws ParseException
     * @throws ParseResponseException
     */
-   public function getSolutionsWithCookies($cookies): array
+   public function getSolutionsWithCookies(string $cookies): array
    {
-      return $this->getSolutions('', '', $cookies);
+      $cookiesArray = $this->splitCookiesToArray($cookies);
+
+      return $this->getSolutions('', '', $cookiesArray);
    }
 
    /**
@@ -73,17 +75,15 @@ class CodewarsCrawler
     */
    private function getSolutions($login, $password, $cookies = null): array
    {
-      $solutions = [];
       try {
          $this->doAuth($cookies, $login, $password);
-         $solutions = $this->getUserSolutions();
+
+         return $this->getUserSolutions();
       } catch (WrongEmailPasswordException | AuthFailException | ParseResponseException $exception) {
          throw $exception;
       } catch (\Throwable $exception) {
          throw new ParseException($exception->getMessage());
       }
-
-      return $solutions;
    }
 
    /**
@@ -163,8 +163,6 @@ class CodewarsCrawler
             array_push($solutions, ...$solutionsPart);
          }
       }
-
-      // for in all pages
 
       return $solutions;
    }
@@ -265,5 +263,21 @@ class CodewarsCrawler
          $this->authorizeAccountWithLoginPassword($login, $password);
          $this->setLogin($login);
       }
+   }
+
+   /**
+    * @param string $cookies
+    *
+    * @return array
+    */
+   private function splitCookiesToArray(string $cookies): array
+   {
+      return collect(explode(';', $cookies))
+         ->mapWithKeys(function ($key) {
+            [$key, $value] = explode('=', trim($key));
+
+            return [$key => $value];
+         })
+         ->toArray();
    }
 }
