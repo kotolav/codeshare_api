@@ -8,6 +8,7 @@
 .env
 .env.backup
 .phpunit.result.cache
+_ide_helper.php
 *.md
 docker-compose.override.yml
 Homestead.json
