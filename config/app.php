@@ -173,9 +173,7 @@ return [
       App\Providers\EventServiceProvider::class,
       App\Providers\RouteServiceProvider::class,
 
-      App\Providers\CodewarsHTTPParserServiceProvider::class,
-      App\Providers\CodewarsHTMLParserServiceProvider::class,
-      App\Providers\HTTPSessionClientServiceProvider::class,
+      App\Providers\CodewarsCrawlerServiceProvider::class,
    ],
 
    /*

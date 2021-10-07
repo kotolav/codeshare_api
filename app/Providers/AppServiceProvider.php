@@ -2,13 +2,17 @@
 
 namespace App\Providers;
 
-use App\Classes\Codewars\CodewarsCrawler;
+use App\Classes\Codewars\HtmlParser\CodewarsHTMLParserInterface;
+use App\Classes\Codewars\HtmlParser\DiDomCodewarsHTMLParser;
+use App\Classes\HttpClient\GuzzleHttpSessionClient;
+use App\Classes\HttpClient\HttpSessionClientInterface;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
    public $singletons = [
-      //      CodewarsCrawler::class => CodewarsCrawler::class,
+      HttpSessionClientInterface::class => GuzzleHttpSessionClient::class,
+      CodewarsHTMLParserInterface::class => DiDomCodewarsHTMLParser::class,
    ];
 
    /**
