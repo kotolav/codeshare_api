@@ -38,9 +38,10 @@ interface CodewarsHTMLParserInterface
 
    /**
     * Get solutions from https://www.codewars.com/users/%username%/completed_solutions?page=%page_number%
+    *
     * @param $html
     *
-    * @return array
+    * @return array ['name' => string, 'id' => string, 'rank' => number, solutions => ['language' => string, 'code' => string, date => number | null]]
     */
    public function getCompleteSolutionsFromPage($html): array;
 }

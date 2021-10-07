@@ -98,7 +98,7 @@ class DiDomCodewarsHTMLParser implements CodewarsHTMLParserInterface
 
       $kataLinkTag = $titleSection->first('a');
       $kataTitle = $kataLinkTag->text();
-      $kataLink = $kataLinkTag->attr('href');
+      $kataLink = Str::afterLast($kataLinkTag->attr('href'), '/kata/');
 
       $kataRankTag = $titleSection->first('.inner-small-hex span');
       if ($kataRankTag) {
@@ -124,8 +124,8 @@ class DiDomCodewarsHTMLParser implements CodewarsHTMLParserInterface
       }
 
       return [
-         'title' => $kataTitle,
-         'link' => $kataLink,
+         'id' => $kataLink,
+         'name' => $kataTitle,
          'rank' => $kataRank,
          'solutions' => $solutions,
       ];
