@@ -1,0 +1,307 @@
+<div class="list-item-solutions"><div class="item-title"><div class="small-hex is-extra-wide is-inline mr-15px is-white-rank" border="false"><div class="inner-small-hex is-extra-wide "><span>8 kyu</span></div></div><a href="/kata/56f695399400f5d9ef000af5">Is this my tail?</a></div><h6>JavaScript:</h6><div class="markdown prose max-w-none"><pre><code class="mb-5px" data-language="javascript">function correctTail(body, tail)
+{
+  return body.endsWith(tail);
+}</code></pre></div><ul class="bulleted-text mt-2 mb-4"><li><time-ago datetime="2018-11-21T07:32:50.611+0000" lang="en"></time-ago></li><li><span class="bullet"></span><a class="is-alt" href="/kata/56f695399400f5d9ef000af5/train/javascript/5bf50978358ddab7ce00007c">Refactor</a></li><li><span class="bullet"></span><a class="is-alt" href="/kata/reviews/56f6953c6f7fc075fd000045/groups/576c3a72bbcf09513f00023d">Discuss</a></li></ul></div><div class="list-item-solutions"><div class="item-title"><div class="small-hex is-extra-wide is-inline mr-15px is-yellow-rank" border="false"><div class="inner-small-hex is-extra-wide "><span>6 kyu</span></div></div><a href="/kata/5514e5b77e6b2f38e0000ca9">+1 Array</a></div><h6>JavaScript:</h6><div class="markdown prose max-w-none"><pre><code class="mb-5px" data-language="javascript">function upArray(arr){
+  if(arr.length === 0) return null
+  let add = 1, res = []
+  for(let i = arr.length - 1; i &gt;= 0; i--) {
+    let e = arr[i]
+    if(e &lt; 0 || e &gt; 10) return null
+    let mod = (e + add) % 10
+    add = Math.floor((e + add) / 10)
+    res.unshift(mod)
+  }
+  if(add &gt; 0)
+    res.unshift(add)
+  return res
+}</code></pre></div><ul class="bulleted-text mt-2 mb-4"><li><time-ago datetime="2018-11-19T07:56:40.189+0000" lang="en"></time-ago></li><li><span class="bullet"></span><a class="is-alt" href="/kata/5514e5b77e6b2f38e0000ca9/train/javascript/5bf2623e3efcee85f80001b7">Refactor</a></li><li><span class="bullet"></span><a class="is-alt" href="/kata/reviews/55160db4bdaf475ddb000003/groups/5bf26cc81a16b0d37b000969">Discuss</a></li></ul></div><div class="list-item-solutions"><div class="item-title"><div class="small-hex is-extra-wide is-inline mr-15px is-yellow-rank" border="false"><div class="inner-small-hex is-extra-wide "><span>6 kyu</span></div></div><a href="/kata/51689e27fe9a00b126000004">Format words into a sentence</a></div><h6>JavaScript:</h6><div class="markdown prose max-w-none"><pre><code class="mb-5px" data-language="javascript">function formatWords(words){
+  if(!words) return &#39;&#39;;
+  words = words.filter(w =&gt; w.length !== 0);
+  if(words.length === 0) return &#39;&#39;;
+  return (words.length &gt; 1) ? [[...words.slice(0, -1)].join(&#39;, &#39;), ...words.slice(-1)].join(&#39; and &#39;) : words[0];
+}</code></pre></div><ul class="bulleted-text mt-2 mb-4"><li><time-ago datetime="2018-11-15T08:18:07.523+0000" lang="en"></time-ago></li><li><span class="bullet"></span><a class="is-alt" href="/kata/51689e27fe9a00b126000004/train/javascript/5bed27371fa0e390510000c7">Refactor</a></li><li><span class="bullet"></span><a class="is-alt" href="/kata/reviews/516f30297c907a79f2000650/groups/5bed2bc11a16b049d000140e">Discuss</a></li></ul></div><div class="list-item-solutions"><div class="item-title"><div class="small-hex is-extra-wide is-inline mr-15px is-white-rank" border="false"><div class="inner-small-hex is-extra-wide "><span>7 kyu</span></div></div><a href="/kata/514a677421607afc99000002">getNames()</a></div><h6>JavaScript:</h6><div class="markdown prose max-w-none"><pre><code class="mb-5px" data-language="javascript">function getNames(data){
+  return data.map(function(item){return item.name});
+}</code></pre></div><ul class="bulleted-text mt-2 mb-4"><li><time-ago datetime="2018-11-15T07:57:40.337+0000" lang="en"></time-ago></li><li><span class="bullet"></span><a class="is-alt" href="/kata/514a677421607afc99000002/train/javascript/5bed26e3077f3250390000db">Refactor</a></li><li><span class="bullet"></span><a class="is-alt" href="/kata/reviews/516f30237c907a79f20002ea/groups/516f30237c907a79f200030b">Discuss</a></li></ul></div><div class="list-item-solutions"><div class="item-title"><div class="small-hex is-extra-wide is-inline mr-15px is-white-rank" border="false"><div class="inner-small-hex is-extra-wide "><span>8 kyu</span></div></div><a href="/kata/50654ddff44f800200000007">Short Long Short</a></div><h6>JavaScript:</h6><div class="markdown prose max-w-none"><pre><code class="mb-5px" data-language="javascript">function solution(a, b){
+  return (a.length &lt; b.length) ? a + b + a : b + a + b;
+}
+</code></pre></div><ul class="bulleted-text mt-2 mb-4"><li><time-ago datetime="2018-11-15T07:51:24.112+0000" lang="en"></time-ago></li><li><span class="bullet"></span><a class="is-alt" href="/kata/50654ddff44f800200000007/train/javascript/5bed24e8d0253f39320000c8">Refactor</a></li><li><span class="bullet"></span><a class="is-alt" href="/kata/reviews/5197f818d2822fb530000082/groups/520bc3afc3f1dfe677000042">Discuss</a></li></ul></div><div class="list-item-solutions"><div class="item-title"><div class="small-hex is-extra-wide is-inline mr-15px is-yellow-rank" border="false"><div class="inner-small-hex is-extra-wide "><span>5 kyu</span></div></div><a href="/kata/55c04b4cc56a697bb0000048">Scramblies</a></div><h6>JavaScript:</h6><div class="markdown prose max-w-none"><pre><code class="mb-5px" data-language="javascript">function scramble(str1, str2) {
+  let dict = Array.from(str1).reduce((acc, el) =&gt; {
+    acc[el] ? acc[el]++ : acc[el] = 1
+    return acc
+  }, {})
+
+  for(let c of str2) {
+    if(dict[c] &amp;&amp; dict[c] &gt; 0) {
+      dict[c]--
+    } else {
+      return false
+    }
+  }
+
+  return true
+}
+</code></pre></div><ul class="bulleted-text mt-2 mb-4"><li><time-ago datetime="2018-10-30T19:15:16.106+0000" lang="en"></time-ago></li><li><span class="bullet"></span><a class="is-alt" href="/kata/55c04b4cc56a697bb0000048/train/javascript/5bd8a9c866e60584d9000377">Refactor</a></li><li><span class="bullet"></span><a class="is-alt" href="/kata/reviews/55c04c11aa1e89cf9f000185/groups/5bd8adc79d2f1de3530007cd">Discuss</a></li></ul><div class="markdown prose max-w-none"><pre><code class="mb-5px" data-language="javascript">function scramble(str1, str2) {
+  let counter = {}
+  for(let c of str2) {
+    counter[c] = counter[c] + 1 || 1;
+  }
+
+  for(let c of str1) {
+    if(counter[c]) {
+      counter[c]--;
+      if(!counter[c]) {
+        delete counter[c];
+        if(Object.keys(counter).length == 0)
+          return true;
+      }
+    }
+  }
+
+  return false;
+}</code></pre></div><ul class="bulleted-text mt-2 mb-4"><li><time-ago datetime="2018-04-12T15:41:20.880+0000" lang="en"></time-ago></li><li><span class="bullet"></span><a class="is-alt" href="/kata/55c04b4cc56a697bb0000048/train/javascript/5acf7a3e23c8182a15000033">Refactor</a></li><li><span class="bullet"></span><a class="is-alt" href="/kata/reviews/55c04c11aa1e89cf9f000185/groups/5acf7e2a626696e3f1000eba">Discuss</a></li></ul></div><div class="list-item-solutions"><div class="item-title"><div class="small-hex is-extra-wide is-inline mr-15px is-yellow-rank" border="false"><div class="inner-small-hex is-extra-wide "><span>6 kyu</span></div></div><a href="/kata/523f5d21c841566fde000009">Array.diff</a></div><h6>JavaScript:</h6><div class="markdown prose max-w-none"><pre><code class="mb-5px" data-language="javascript">const array_diff = (a, b) =&gt; a.filter((e) =&gt; !b.includes(e))</code></pre></div><ul class="bulleted-text mt-2 mb-4"><li><time-ago datetime="2018-10-30T18:54:54.211+0000" lang="en"></time-ago></li><li><span class="bullet"></span><a class="is-alt" href="/kata/523f5d21c841566fde000009/train/javascript/5bd8a8abf378567074000324">Refactor</a></li></ul><div class="markdown prose max-w-none"><pre><code class="mb-5px" data-language="javascript">function array_diff(a, b) {
+  let r = []
+  for (let i of a) {
+    if (b.indexOf(i) == -1) {
+      r.push(i);
+    }
+  }
+
+  return r;
+}</code></pre></div><ul class="bulleted-text mt-2 mb-4"><li><time-ago datetime="2018-04-09T15:26:45.097+0000" lang="en"></time-ago></li><li><span class="bullet"></span><a class="is-alt" href="/kata/523f5d21c841566fde000009/train/javascript/5acb85766d74198c0d000114">Refactor</a></li><li><span class="bullet"></span><a class="is-alt" href="/kata/reviews/523f5d21c841566fde00000c/groups/5acb864699aaeeb59a002b62">Discuss</a></li></ul></div><div class="list-item-solutions"><div class="item-title"><div class="small-hex is-extra-wide is-inline mr-15px is-white-rank" border="false"><div class="inner-small-hex is-extra-wide "><span>8 kyu</span></div></div><a href="/kata/57cc975ed542d3148f00015b">You only need one - Beginner</a></div><h6>JavaScript:</h6><div class="markdown prose max-w-none"><pre><code class="mb-5px" data-language="javascript">const check = (a,x) =&gt; a.includes(x)</code></pre></div><ul class="bulleted-text mt-2 mb-4"><li><time-ago datetime="2018-10-30T18:53:27.596+0000" lang="en"></time-ago></li><li><span class="bullet"></span><a class="is-alt" href="/kata/57cc975ed542d3148f00015b/train/javascript/5bd8a8517e16bc8f9a00033f">Refactor</a></li><li><span class="bullet"></span><a class="is-alt" href="/kata/reviews/57cc9785e850d466050000a7/groups/57cd64d2fa9fc5a5850006c2">Discuss</a></li></ul></div><div class="list-item-solutions"><div class="item-title"><div class="small-hex is-extra-wide is-inline mr-15px is-yellow-rank" border="false"><div class="inner-small-hex is-extra-wide "><span>6 kyu</span></div></div><a href="/kata/526233aefd4764272800036f">Matrix Addition</a></div><h6>JavaScript:</h6><div class="markdown prose max-w-none"><pre><code class="mb-5px" data-language="javascript">const matrixAddition = (a, b) =&gt; a.map((row, x) =&gt; row.map((item, y) =&gt; item + b[x][y]))</code></pre></div><ul class="bulleted-text mt-2 mb-4"><li><time-ago datetime="2018-10-18T08:14:12.497+0000" lang="en"></time-ago></li><li><span class="bullet"></span><a class="is-alt" href="/kata/526233aefd4764272800036f/train/javascript/5bc8408e0795139ab4000200">Refactor</a></li><li><span class="bullet"></span><a class="is-alt" href="/kata/reviews/526233aefd47642728000372/groups/5bc840d740ecc73355001116">Discuss</a></li></ul><div class="markdown prose max-w-none"><pre><code class="mb-5px" data-language="javascript">function matrixAddition(a, b){
+  let sum = Array.from({length: a.length}, () =&gt; new Array(a.length).fill(0));
+  for(let x = 0, l = a.length; x &lt; l; x++) {
+    for (let y = 0, ll = a[x].length; y &lt; ll; y++) {
+      sum[x][y] = a[x][y] + b[x][y]
+    }
+  }
+
+  return sum
+}</code></pre></div><ul class="bulleted-text mt-2 mb-4"><li><time-ago datetime="2018-10-18T08:08:53.282+0000" lang="en"></time-ago></li><li><span class="bullet"></span><a class="is-alt" href="/kata/526233aefd4764272800036f/train/javascript/5bc83d830795139ab40001cf">Refactor</a></li><li><span class="bullet"></span><a class="is-alt" href="/kata/reviews/526233aefd47642728000372/groups/5bc83f98dcb0ac95af0009c4">Discuss</a></li></ul></div><div class="list-item-solutions"><div class="item-title"><div class="small-hex is-extra-wide is-inline mr-15px is-white-rank" border="false"><div class="inner-small-hex is-extra-wide "><span>7 kyu</span></div></div><a href="/kata/5901f361927288d961000013">Product of Array Items</a></div><h6>JavaScript:</h6><div class="markdown prose max-w-none"><pre><code class="mb-5px" data-language="javascript">function product(values) {
+  return (Array.isArray(values) &amp;&amp; values.length) ? values.reduce((r, i) =&gt; r * i) : null
+}</code></pre></div><ul class="bulleted-text mt-2 mb-4"><li><time-ago datetime="2018-10-18T07:53:20.038+0000" lang="en"></time-ago></li><li><span class="bullet"></span><a class="is-alt" href="/kata/5901f361927288d961000013/train/javascript/5bc83aacc3ba46fbc90001c4">Refactor</a></li><li><span class="bullet"></span><a class="is-alt" href="/kata/reviews/59710922612017ab47000003/groups/5bc83bf17bf31d3512000b58">Discuss</a></li></ul></div><div class="list-item-solutions"><div class="item-title"><div class="small-hex is-extra-wide is-inline mr-15px is-white-rank" border="false"><div class="inner-small-hex is-extra-wide "><span>8 kyu</span></div></div><a href="/kata/545991b4cbae2a5fda000158">Enumerable Magic #3 - Does My List Include This?</a></div><h6>JavaScript:</h6><div class="markdown prose max-w-none"><pre><code class="mb-5px" data-language="javascript">const include = (arr, item) =&gt; arr.indexOf(item) !== -1</code></pre></div><ul class="bulleted-text mt-2 mb-4"><li><time-ago datetime="2018-10-18T07:43:12.111+0000" lang="en"></time-ago></li><li><span class="bullet"></span><a class="is-alt" href="/kata/545991b4cbae2a5fda000158/train/javascript/5bc83935eba26e751100028c">Refactor</a></li><li><span class="bullet"></span><a class="is-alt" href="/kata/reviews/5596a49c9cf26516f3000199/groups/56435c829c9176368c00006a">Discuss</a></li></ul></div><div class="list-item-solutions"><div class="item-title"><div class="small-hex is-extra-wide is-inline mr-15px is-yellow-rank" border="false"><div class="inner-small-hex is-extra-wide "><span>5 kyu</span></div></div><a href="/kata/531963f82dde6fc8c800048a">Mystery function #1</a></div><h6>JavaScript:</h6><div class="markdown prose max-w-none"><pre><code class="mb-5px" data-language="javascript">function solved(str){
+  let m = Math.floor(str.length / 2)
+  return [...(str.length % 2 ? str.slice(0, m) + str.slice(m + 1) : str)].sort().join(&#39;&#39;)
+}</code></pre></div><ul class="bulleted-text mt-2 mb-4"><li><time-ago datetime="2018-10-11T21:28:24.627+0000" lang="en"></time-ago></li><li><span class="bullet"></span><a class="is-alt" href="/kata/531963f82dde6fc8c800048a/train/javascript/5bbfbac10441caba4e00014f">Refactor</a></li><li><span class="bullet"></span><a class="is-alt" href="/kata/reviews/531963f82dde6fc8c800048d/groups/5bbfc07c605c392aba001c0d">Discuss</a></li></ul></div><div class="list-item-solutions"><div class="item-title"><div class="small-hex is-extra-wide is-inline mr-15px is-blue-rank" border="false"><div class="inner-small-hex is-extra-wide "><span>3 kyu</span></div></div><a href="/kata/59d582cafbdd0b7ef90000a0">Papers, Please</a></div><h6>JavaScript:</h6><div class="markdown prose max-w-none"><pre><code class="mb-5px" data-language="javascript">class Inspector {
+  constructor() {
+    this.rules = {&#39;documents&#39; : {}, &#39;access&#39;: new Set(), &#39;vaccination&#39;: {}}
+    this.currentDate = new Date(&#39;1982.11.22&#39;)
+  }
+  receiveBulletin(string) {
+    let data = string.split(&#39;\n&#39;)
+    this.rules[&#39;documents&#39;] = this.parseDocuments(data, this.rules[&#39;documents&#39;])
+    this.rules[&#39;vaccination&#39;] = this.parseVaccination(data, this.rules[&#39;vaccination&#39;])
+    this.rules[&#39;access&#39;] = this.parseAccess(data, this.rules[&#39;access&#39;])
+    this.rules[&#39;criminal&#39;] = [this.parseCriminal(string)]
+    this.currentDate.setDate(this.currentDate.getDate() + 1)
+  }
+
+  parseCriminal(strings) {
+    let parsed = strings.match(/Wanted by the State: (.*?) (.*?)$/i)
+    if(parsed) {
+      return parsed[2] + &#39;, &#39; + parsed[1]
+    }
+    return &#39;&#39;
+  }
+
+  parseDocuments(strings, obj) {
+    let rules = obj
+    let data = strings.filter(x =&gt; x.includes(&#39;require&#39;) &amp;&amp; !x.includes(&#39;vaccination&#39;))
+    for(let s of data) {
+      let parsed = s.match(/^(?:Citizens of )?(.*?) (no longer )?require (.*?)$/i)
+      let kind = parsed[1].replace(/_/g, &#39; &#39;)
+      for(let k of kind.split(&#39;, &#39;)) {
+        if(parsed[2]) {
+          delete rules[k]
+        } else {
+          rules[k] = parsed[3]
+        }
+      }
+    }
+    return rules
+  }
+
+  parseVaccination(strings, obj) {
+    let rules = obj
+    let data = strings.filter(x =&gt; x.includes(&#39;vaccination&#39;))
+    for(let s of data) {
+      let parsed = s.match(/^(?:Citizens of )?(.*?) (no longer )?require (.*?)$/i)
+      let kind = parsed[1].replace(/_/g, &#39; &#39;)
+      let value = parsed[3].replace(&#39; vaccination&#39;, &#39;&#39;)
+      for(let country of kind.split(&#39;, &#39;)) {
+        if(parsed[2]) {
+          delete rules[country]
+        } else {
+          rules[country] = value
+        }
+      }
+    }
+    return rules
+  }
+
+  parseAccess(strings, obj) {
+    let rules = obj
+    let data = strings.filter(x =&gt; /\b(allow|deny)\b/i.test(x))
+    for(let s of data) {
+      let parsed = s.match(/\b(allow|deny) citizens of (.*?)$/i)
+      let kind = parsed[1].toLowerCase()
+      let newCountries = parsed[2].split(&#39;, &#39;)
+      switch(kind) {
+        case &#39;allow&#39;: rules = new Set([...rules, ...newCountries]); break
+        case &#39;deny&#39;: rules = new Set([...rules].filter(x =&gt; !newCountries.includes(x))); break
+      }
+    }
+    return rules
+  }
+
+  parseValue(str, parseKey, obj, objKey) {
+    let result = str.match(new RegExp(parseKey + &#39;: (.*)&#39;))
+    if(result)
+      obj[objKey] = result[1]
+  }
+
+  parsePapers(data) {
+    let papers = {}
+    for(let [document, str] of Object.entries(data))
+    {
+      let info = {}
+      let reg = new RegExp(&#39;(.*): (.*)&#39;, &#39;g&#39;)
+      let result
+      while((result = reg.exec(str)) !== null) {
+        let key = result[1].replace(/_/g, &#39; &#39;).toLowerCase()
+        if(key == &#39;id#&#39;) key = &#39;id&#39;
+        info[key] = result[2]
+      }
+      papers[document.replace(/_/g, &#39; &#39;)] = info
+    }
+    return papers
+  }
+
+  checkNation(nation) {
+    if(this.rules.access.has(nation))
+      return true
+    throw(&#39;Entry denied: citizen of banned nation.&#39;)
+  }
+
+  checkCriminal(name) {
+    if(this.rules.criminal.includes(name))
+      throw(&#39;Detainment: Entrant is a wanted criminal.&#39;)
+  }
+
+  checkExpiration(person) {
+    for(let [paper, data] of Object.entries(person)) {
+      if(data.exp &amp;&amp; ((new Date(data.exp)) &lt; (this.currentDate))) {
+        throw (&#39;Entry denied: &#39; + paper.replace(/_/g, &#39; &#39;) + &#39; expired.&#39;)
+      }
+    }
+  }
+
+  checkVaccination(person) {
+    if(this.rules.vaccination) {
+      for(let personType of person.info[&#39;personType&#39;]) {
+        if(personType in this.rules.vaccination) {
+          if(!(person[&#39;papers&#39;][&#39;certificate of vaccination&#39;] &amp;&amp; person[&#39;papers&#39;][&#39;certificate of vaccination&#39;][&#39;vaccines&#39;].includes(this.rules.vaccination[personType]))) {
+            throw(&#39;Entry denied: missing required certificate of vaccination.&#39;)
+          }
+        }
+      }
+    }
+  }
+
+  makeInfo(person) {
+    let info = {}
+    for(let [paper, paperData] of Object.entries(person)) {
+      for(let [key, data] of Object.entries(paperData)) {
+        if([&#39;exp&#39;].includes(key)) continue
+        if(key == &#39;name&#39; &amp;&amp; this.rules.criminal.includes(data))
+          throw(&#39;Detainment: Entrant is a wanted criminal.&#39;)
+        if((key in info) &amp;&amp; (info[key] !== data)) {
+          let errKey = key
+
+          switch(key) {
+            case &#39;id&#39;: errKey = &#39;ID number&#39;; break
+            case &#39;nation&#39;: errKey = &#39;nationality&#39;; break
+          }
+
+          throw(&#39;Detainment: &#39; + errKey + &#39; mismatch.&#39;)
+        } else {
+          info[key.replace(/_/g, &#39; &#39;)] = data
+        }
+      }
+    }
+    info[&#39;personType&#39;] = new Set([&#39;Entrants&#39;])
+    if(info[&#39;nation&#39;] &amp;&amp; info[&#39;nation&#39;].toLowerCase() == &#39;arstotzka&#39;)
+      info[&#39;personType&#39;].add(&#39;Arstotzka&#39;)
+    else
+      info[&#39;personType&#39;].add(&#39;Foreigners&#39;).add(info[&#39;nation&#39;])
+    if(info[&#39;purpose&#39;] &amp;&amp; (info[&#39;purpose&#39;].toLowerCase() == &#39;work&#39;))
+      info[&#39;personType&#39;].add(&#39;Workers&#39;)
+    return info
+  }
+
+  checkRequirements(person) {
+    for(let [personType, paper] of Object.entries(this.rules.documents)) {
+      if(person.info.personType.has(personType)) {
+        if(paper == &#39;certificate of vaccination&#39;) continue
+        if(!((paper in person.papers)
+            || ((paper == &#39;access permit&#39;) &amp;&amp; (&#39;grant of asylum&#39; in person.papers))
+            )) {
+          if((paper == &#39;access permit&#39;) &amp;&amp; (&#39;diplomatic authorization&#39; in person.papers))
+          {
+            if(!person.papers[&#39;diplomatic authorization&#39;][&#39;access&#39;].includes(&#39;Arstotzka&#39;))
+            {
+              throw(&#39;Entry denied: invalid diplomatic authorization.&#39;)
+            } else {
+              continue
+            }
+          }
+          throw(&#39;Entry denied: missing required &#39; + paper + &#39;.&#39;)
+        }
+      }
+    }
+  }
+
+  inspect(strings) {
+    let person = {&#39;papers&#39;: this.parsePapers(strings)}
+    try {
+      person = Object.assign(person, {&#39;info&#39;: this.makeInfo(person.papers)})
+      this.checkExpiration(person.papers)
+      this.checkRequirements(person)
+      this.checkVaccination(person)
+      this.checkNation(person.info.nation)
+    } catch(err) {
+      return err
+    }
+
+    return person.info.nation == &#39;Arstotzka&#39; ? &#39;Glory to Arstotzka.&#39; : &#39;Cause no trouble.&#39;
+  }
+}</code></pre></div><ul class="bulleted-text mt-2 mb-4"><li><time-ago datetime="2018-10-11T20:09:08.187+0000" lang="en"></time-ago></li><li><span class="bullet"></span><a class="is-alt" href="/kata/59d582cafbdd0b7ef90000a0/train/javascript/5bbee79e6aab18b3af000168">Refactor</a></li><li><span class="bullet"></span><a class="is-alt" href="/kata/reviews/59de8b08289ef9d279001061/groups/5bbfade7bb77383d260031d9">Discuss</a></li></ul></div><div class="list-item-solutions"><div class="item-title"><div class="small-hex is-extra-wide is-inline mr-15px is-yellow-rank" border="false"><div class="inner-small-hex is-extra-wide "><span>5 kyu</span></div></div><a href="/kata/52449b062fb80683ec000024">The Hashtag Generator</a></div><h6>JavaScript:</h6><div class="markdown prose max-w-none"><pre><code class="mb-5px" data-language="javascript">function generateHashtag (str) {
+  let s = str.split(&#39; &#39;).reduce((s, w) =&gt; s + w.charAt(0).toUpperCase() + w.slice(1).toLowerCase(), &#39;&#39;)
+  return (s.length &gt; 0) &amp;&amp; (s.length &lt; 140) ? &#39;#&#39; + s : false
+}</code></pre></div><ul class="bulleted-text mt-2 mb-4"><li><time-ago datetime="2018-10-11T07:18:15.957+0000" lang="en"></time-ago></li><li><span class="bullet"></span><a class="is-alt" href="/kata/52449b062fb80683ec000024/train/javascript/5bbef9179b84f4da1b00007e">Refactor</a></li><li><span class="bullet"></span><a class="is-alt" href="/kata/reviews/5244ae768c42b450e0000005/groups/5bbef8e5b15f686cbc000236">Discuss</a></li></ul><div class="markdown prose max-w-none"><pre><code class="mb-5px" data-language="javascript">function generateHashtag (str) {
+  let s = str.split(&#39; &#39;).reduce((s, w) =&gt; s + w.charAt(0).toUpperCase() + w.slice(1).toLowerCase(), &#39;&#39;)
+  return (s.length &gt; 0) &amp;&amp;(s.length &lt; 140) ? &#39;#&#39; + s : false
+}</code></pre></div><ul class="bulleted-text mt-2 mb-4"><li><time-ago datetime="2018-10-11T07:16:32.368+0000" lang="en"></time-ago></li><li><span class="bullet"></span><a class="is-alt" href="/kata/52449b062fb80683ec000024/train/javascript/5bbef7736439849e1b00016c">Refactor</a></li></ul></div><div class="list-item-solutions"><div class="item-title"><div class="small-hex is-extra-wide is-inline mr-15px is-yellow-rank" border="false"><div class="inner-small-hex is-extra-wide "><span>5 kyu</span></div></div><a href="/kata/56baeae7022c16dd7400086e">Phone Directory</a></div><h6>JavaScript:</h6><div class="markdown prose max-w-none"><pre><code class="mb-5px" data-language="javascript">function phone(strng, num) {
+    let strings = strng.split(&#39;\n&#39;)
+    let db = {}
+    for (let person of strings) {
+      let phone, address, name
+      person = person.replace(/\+?([\-\d]{11,})/, function(s, p1) {
+        phone = p1
+        return &#39;&#39;
+      })
+      person = person.replace(/&lt;(.*?)&gt;/, function(s, p1) {
+        name = p1
+        return &#39;&#39;
+      })
+      address = (person.replace(/[^\w\s\-\.]+/g, &#39;&#39;).replace(/(\s{2,}|_)/g, &#39; &#39;)).trim()
+      db[phone] = phone in db ? {&#39;error&#39;: &#39;Too many people: &#39; + phone} : {&#39;phone&#39;: phone, &#39;name&#39;: name, &#39;address&#39;: address}
+    }
+
+    let found = db[num]
+    if(!found)
+      return &#39;Error =&gt; Not found: &#39; + num
+    if(&#39;error&#39; in found)
+      return &#39;Error =&gt; &#39; + found[&#39;error&#39;]
+    else
+      return `Phone =&gt; ${found[&#39;phone&#39;]}, Name =&gt; ${found[&#39;name&#39;]}, Address =&gt; ${found[&#39;address&#39;]}`
+}</code></pre></div><ul class="bulleted-text mt-2 mb-4"><li><time-ago datetime="2018-10-10T21:34:02.486+0000" lang="en"></time-ago></li><li><span class="bullet"></span><a class="is-alt" href="/kata/56baeae7022c16dd7400086e/train/javascript/5bbe620a0441ca5c71000137">Refactor</a></li><li><span class="bullet"></span><a class="is-alt" href="/kata/reviews/56baec1513ba237461000039/groups/5bbe704cb15f68ad8d001e25">Discuss</a></li></ul></div><div class="p-10px js-infinite-marker" data-page="2"><h5>Loading more items...</h5></div>
