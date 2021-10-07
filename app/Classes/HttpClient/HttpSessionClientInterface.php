@@ -1,0 +1,38 @@
+<?php
+
+namespace App\Classes\HttpClient;
+
+interface HttpSessionClientInterface
+{
+   /**
+    * Load cookies for a given domain
+    * @param $cookies - [$key => $value, $key2 => $value2]
+    * @param $domain
+    *
+    * @return mixed
+    */
+   public function setCookies($cookies, $domain);
+
+   /**
+    * Send GET request. Response with ['statusCode', 'headers', 'body'].
+    * Header has lowercase keys and values as array ['Content-Type' => ['text/html; charset=utf-8']]
+    *
+    * @param $url
+    * @param array $options
+    *
+    * @return array
+    */
+   public function get($url, array $options = []): array;
+
+   /**
+    * Send POST request. Response with ['statusCode', 'headers', 'body'].
+    * Header has lowercase keys and values as array ['Content-Type' => ['text/html; charset=utf-8']]
+    *
+    * @param $url
+    * @param array $postData - ['key' => 'value', 'key2' => 'value2']
+    * @param array $options
+    *
+    * @return array
+    */
+   public function post($url, array $postData = [], array $options = []): array;
+}
