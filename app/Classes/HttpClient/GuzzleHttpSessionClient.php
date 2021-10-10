@@ -27,9 +27,26 @@ class GuzzleHttpSessionClient implements HttpSessionClientInterface
       $this->httpClient = new Client($options);
    }
 
+   /**
+    * @param string $cookies
+    *
+    * @return array
+    */
+   private function splitCookiesToArray(string $cookies): array
+   {
+      return collect(explode(';', $cookies))
+         ->mapWithKeys(function ($key) {
+            [$key, $value] = explode('=', trim($key));
+
+            return [$key => $value];
+         })
+         ->toArray();
+   }
+
    public function setCookies($cookies, $domain)
    {
-      $this->cookieJar = CookieJar::fromArray($cookies, $domain);
+      $cookiesArray = $this->splitCookiesToArray($cookies);
+      $this->cookieJar = CookieJar::fromArray($cookiesArray, $domain);
    }
 
    public function get($url, array $options = []): array

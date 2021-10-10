@@ -7,9 +7,9 @@ use App\Classes\Codewars\Exception\ParseException;
 use App\Classes\Codewars\Exception\WrongEmailPasswordException;
 use App\Classes\Codewars\HtmlParser\CodewarsHTMLParserInterface;
 use App\Classes\Codewars\HtmlParser\Exception\ParseResponseException;
-use App\Classes\HttpClient\GuzzleHttpSessionClient;
 use App\Classes\HttpClient\HttpSessionClientInterface;
 use Illuminate\Support\Str;
+use Throwable;
 
 class CodewarsCrawler
 {
@@ -56,13 +56,15 @@ class CodewarsCrawler
     */
    public function getSolutionsWithCookies(string $cookies): array
    {
-      $cookiesArray = $this->splitCookiesToArray($cookies);
+      return $this->getSolutions('', '', $cookies);
+   }
 
-      return $this->getSolutions('', '', $cookiesArray);
+   public function getKataDescriptions()
+   {
    }
 
    /**
-    * Retrieve solved user challenges
+    * Retrieve solved challenges
     *
     * @param $login
     * @param $password
@@ -81,7 +83,7 @@ class CodewarsCrawler
          return $this->getUserSolutions();
       } catch (WrongEmailPasswordException | AuthFailException | ParseResponseException $exception) {
          throw $exception;
-      } catch (\Throwable $exception) {
+      } catch (Throwable $exception) {
          throw new ParseException($exception->getMessage());
       }
    }
@@ -97,12 +99,12 @@ class CodewarsCrawler
    /**
     * Authorization with cookies
     *
-    * @param array $cookies
+    * @param string $cookies
     *
     * @throws AuthFailException
     * @throws WrongEmailPasswordException
     */
-   private function authorizeAccountWithCookies(array $cookies): void
+   private function authorizeAccountWithCookies(string $cookies): void
    {
       $this->httpClient->setCookies($cookies, self::COOKIES_DOMAIN);
       [$authStatusCode, $headers, $authResponseBody] = $this->httpClient->get(
@@ -202,7 +204,7 @@ class CodewarsCrawler
          $solutionsCount = $this->codewarsHtmlParser->getCompleteSolutionsCount(
             $firstPageHTML
          );
-      } catch (\Throwable $e) {
+      } catch (Throwable $e) {
          $solutionsCount = 0;
       }
 
@@ -263,21 +265,5 @@ class CodewarsCrawler
          $this->authorizeAccountWithLoginPassword($login, $password);
          $this->setLogin($login);
       }
-   }
-
-   /**
-    * @param string $cookies
-    *
-    * @return array
-    */
-   private function splitCookiesToArray(string $cookies): array
-   {
-      return collect(explode(';', $cookies))
-         ->mapWithKeys(function ($key) {
-            [$key, $value] = explode('=', trim($key));
-
-            return [$key => $value];
-         })
-         ->toArray();
    }
 }
