@@ -9,6 +9,8 @@
 .env.backup
 .phpunit.result.cache
 _ide_helper.php
+_ide_helper_models.php
+.phpstorm.meta.php
 *.md
 docker-compose.override.yml
 Homestead.json
