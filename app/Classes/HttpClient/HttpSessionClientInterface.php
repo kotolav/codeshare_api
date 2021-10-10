@@ -6,12 +6,12 @@ interface HttpSessionClientInterface
 {
    /**
     * Load cookies for a given domain
-    * @param $cookies - [$key => $value, $key2 => $value2]
-    * @param $domain
+    * @param string $cookies - 'key=value; key2=value2'
+    * @param string $domain
     *
     * @return mixed
     */
-   public function setCookies($cookies, $domain);
+   public function setCookies(string $cookies, string $domain);
 
    /**
     * Send GET request. Response with ['statusCode', 'headers', 'body'].
