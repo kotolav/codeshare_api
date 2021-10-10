@@ -108,10 +108,7 @@ class DiDomCodewarsHTMLParser implements CodewarsHTMLParserInterface
             optional($titleSection->first('.tag span'))->text() ?? 'none';
       }
 
-      $solutionsTags = $element->find(
-         '//h6/following-sibling::*[1]/self::div//code',
-         Query::TYPE_XPATH
-      );
+      $solutionsTags = $element->find('div code');
 
       $solutions = [];
       foreach ($solutionsTags as $solutionCodeTag) {
