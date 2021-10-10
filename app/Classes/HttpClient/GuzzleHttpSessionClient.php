@@ -66,11 +66,7 @@ class GuzzleHttpSessionClient implements HttpSessionClientInterface
          $response = $this->httpClient->request($method, $url, $requestOptions);
          $result = [
             $response->getStatusCode(),
-            collect($response->getHeaders())
-               ->mapWithKeys(function ($item, $key) {
-                  return [mb_strtolower($key) => collect($item)->first() ?? ''];
-               })
-               ->toArray(),
+            $this->headerKeysToLowerCase($response->getHeaders()),
             optional($response->getBody())->getContents(),
          ];
       } catch (\Throwable $exception) {
@@ -83,5 +79,14 @@ class GuzzleHttpSessionClient implements HttpSessionClientInterface
    public function post($url, array $postData = [], array $options = []): array
    {
       return $this->request($url, 'POST', $postData, $options);
+   }
+
+   private function headerKeysToLowerCase($headers): array
+   {
+      return collect($headers)
+         ->mapWithKeys(function ($item, $key) {
+            return [mb_strtolower($key) => collect($item)->first() ?? ''];
+         })
+         ->toArray();
    }
 }

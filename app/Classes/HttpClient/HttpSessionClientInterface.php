@@ -15,7 +15,7 @@ interface HttpSessionClientInterface
 
    /**
     * Send GET request. Response with ['statusCode', 'headers', 'body'].
-    * Header has lowercase keys and values as array ['Content-Type' => ['text/html; charset=utf-8']]
+    * Header has lowercase keys and values as array ['content-type' => ['text/html; charset=utf-8']]
     *
     * @param $url
     * @param array $options
@@ -26,7 +26,7 @@ interface HttpSessionClientInterface
 
    /**
     * Send POST request. Response with ['statusCode', 'headers', 'body'].
-    * Header has lowercase keys and values as array ['Content-Type' => ['text/html; charset=utf-8']]
+    * Header has lowercase keys and values as array ['content-type' => ['text/html; charset=utf-8']]
     *
     * @param $url
     * @param array $postData - ['key' => 'value', 'key2' => 'value2']
