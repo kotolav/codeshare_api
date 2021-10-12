@@ -8,6 +8,7 @@ use App\Classes\Codewars\Exception\WrongEmailPasswordException;
 use App\Classes\Codewars\HtmlParser\CodewarsHTMLParserInterface;
 use App\Classes\Codewars\HtmlParser\Exception\ParseResponseException;
 use App\Classes\HttpClient\HttpSessionClientInterface;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use Throwable;
 
@@ -16,6 +17,7 @@ class CodewarsCrawler
    private const AUTH_URL = 'https://www.codewars.com/users/sign_in';
    private const SOLUTIONS_URL = 'https://www.codewars.com/users/%s/completed_solutions?page=%s';
    private const USER_SETTINGS_URL = 'https://www.codewars.com/users/edit';
+   private const API_URL = 'https://www.codewars.com/api/v1';
    private const COOKIES_DOMAIN = 'www.codewars.com';
    protected HttpSessionClientInterface $httpClient;
    protected CodewarsHTMLParserInterface $codewarsHtmlParser;
@@ -59,8 +61,28 @@ class CodewarsCrawler
       return $this->getSolutions('', '', $cookies);
    }
 
-   public function getKataDescriptions()
+   /**
+    * @throws ParseException
+    */
+   public function getKataDescriptions(array $kataIds): array
    {
+      $errorsCountStreak = 0;
+      $errorsCountLimit = 3;
+      $descriptions = [];
+
+      foreach ($kataIds as $id) {
+         try {
+            $descriptions[] = $this->getKataDescriptionByAPI($id);
+            $errorsCountStreak = 0;
+         } catch (Throwable $exception) {
+            $errorsCountStreak++;
+            if ($errorsCountStreak >= $errorsCountLimit) {
+               throw $exception;
+            }
+         }
+      }
+
+      return $descriptions;
    }
 
    /**
@@ -120,7 +142,6 @@ class CodewarsCrawler
    private function continueAuth($body, $serverResponseCode, $headers): void
    {
       if (!$this->isAuthSuccessful($serverResponseCode, $headers)) {
-         // Получить сообщение об ошибке выбросить исключение
          $errorMessage = $this->codewarsHtmlParser->getErrorAuthMessage($body);
          if (Str::contains($errorMessage, 'Invalid email or password')) {
             throw new WrongEmailPasswordException($errorMessage);
@@ -264,6 +285,40 @@ class CodewarsCrawler
       } else {
          $this->authorizeAccountWithLoginPassword($login, $password);
          $this->setLogin($login);
+      }
+   }
+
+   /**
+    * @param $id
+    *
+    * @return array
+    * @throws ParseException
+    */
+   private function getKataDescriptionByAPI($id): array
+   {
+      $result = Http::retry(2, 1000)->get(
+         self::API_URL . '/code-challenges/' . $id
+      );
+      if ($result->successful()) {
+         try {
+            $data = $result->json();
+            return [
+               'id' => $data['id'],
+               'name' => $data['name'],
+               'category' => $data['category'],
+               'description' => $data['description'],
+               'tags' => $data['tags'],
+               'rank' => $data['rank']['id'],
+               'totalAttempts' => $data['totalAttempts'],
+               'totalCompleted' => $data['totalCompleted'],
+            ];
+         } catch (Throwable $exception) {
+            throw new ParseException(
+               'Parse kata description error: ' . $exception->getMessage()
+            );
+         }
+      } else {
+         throw new ParseException('No response for Kata id: ' . $id);
       }
    }
 }
