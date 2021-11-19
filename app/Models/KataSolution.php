@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * App\Models\KataSolution
@@ -42,8 +43,8 @@ class KataSolution extends Model
    protected $casts = [
       //      'solvedAt' => Date,
    ];
-   public function kata()
+   public function kata(): BelongsTo
    {
-      $this->belongsTo(Kata::class);
+      return $this->belongsTo(Kata::class, 'kata_id', 'id');
    }
 }
