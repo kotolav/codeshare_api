@@ -86,6 +86,14 @@ class CodewarsCrawler
    }
 
    /**
+    * @return string
+    */
+   public function getLogin(): string
+   {
+      return $this->login;
+   }
+
+   /**
     * Retrieve solved challenges
     *
     * @param $login
@@ -115,7 +123,7 @@ class CodewarsCrawler
     */
    private function setLogin(string $login): void
    {
-      $this->login = Str::before($login, '@');
+      $this->login = trim($login);
    }
 
    /**
@@ -281,11 +289,10 @@ class CodewarsCrawler
    {
       if ($cookies !== null) {
          $this->authorizeAccountWithCookies($cookies);
-         $this->setLoginFromSettingsPage();
       } else {
          $this->authorizeAccountWithLoginPassword($login, $password);
-         $this->setLogin($login);
       }
+      $this->setLoginFromSettingsPage();
    }
 
    /**
