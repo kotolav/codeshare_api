@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Classes\Codewars\CodewarsCrawler;
+
 class HomeController extends Controller
 {
-   public function index()
+   public function index(CodewarsCrawler $parser)
    {
-      return view('web.pages.index');
+      return 'It\'s alive!';
    }
 }
