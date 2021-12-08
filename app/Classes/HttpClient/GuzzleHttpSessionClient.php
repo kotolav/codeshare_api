@@ -22,6 +22,8 @@ class GuzzleHttpSessionClient implements HttpSessionClientInterface
       $defaultOptions = [
          'cookies' => &$this->cookieJar, // Assign by reference because there is no other way to communicate with cookies after
          'allow_redirects' => false,
+         'timeout' => 10,
+         'connect_timeout' => 10,
       ];
       $options = array_merge($defaultOptions, $options);
       $this->httpClient = new Client($options);
@@ -36,7 +38,7 @@ class GuzzleHttpSessionClient implements HttpSessionClientInterface
    {
       return collect(explode(';', $cookies))
          ->mapWithKeys(function ($key) {
-            [$key, $value] = explode('=', trim($key));
+            [$key, $value] = array_pad(explode('=', trim($key), 2), 2, null);
 
             return [$key => $value];
          })
