@@ -11,16 +11,16 @@
       "prettier": "prettier"
    },
    "devDependencies": {
+      "@prettier/plugin-php": "^0.17.5",
       "axios": "^0.21",
       "browser-sync": "^2.27.5",
       "browser-sync-webpack-plugin": "^2.3.0",
       "laravel-mix": "^6.0.6",
       "lodash": "^4.17.19",
       "postcss": "^8.1.14",
+      "prettier": "^2.4.1",
       "sass": "^1.42.0",
-      "sass-loader": "^12.1.0",
-      "@prettier/plugin-php": "^0.17.5",
-      "prettier": "^2.4.1"
+      "sass-loader": "^12.1.0"
    },
    "dependencies": {}
 }
