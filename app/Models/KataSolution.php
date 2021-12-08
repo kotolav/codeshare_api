@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Carbon;
 
 /**
  * App\Models\KataSolution
@@ -16,10 +17,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $code_len
  * @property string $code_hash
  * @property string|null $comment
- * @property string $solved_at
+ * @property \datetime $solved_at
  * @property int $can_show
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property-read \App\Models\Kata $kata
  * @method static \Illuminate\Database\Eloquent\Builder|KataSolution newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|KataSolution newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|KataSolution query()
@@ -40,9 +42,18 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class KataSolution extends Model
 {
    protected $guarded = ['id'];
-   protected $casts = [
-      //      'solvedAt' => Date,
+   protected $casts = ['solved_at' => 'datetime:U'];
+   protected $visible = [
+      'id',
+      'kata_id',
+      'language',
+      'code',
+      'code_len',
+      'comment',
+      'solved_at',
+      'can_show',
    ];
+
    public function kata(): BelongsTo
    {
       return $this->belongsTo(Kata::class, 'kata_id', 'id');
