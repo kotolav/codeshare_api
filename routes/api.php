@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\EditKataController;
+use App\Http\Controllers\PublicKataController;
+use App\Http\Controllers\TaskController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +17,48 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::post('/edit/create-task', [TaskController::class, 'createTask']);
+
+Route::group(['prefix' => '/edit/{editToken}'], function () {
+   Route::group(['middleware' => 'edit.kata.token.enabled'], function () {
+      Route::get('/status', [TaskController::class, 'getTaskStatus']);
+      Route::post('/update', [TaskController::class, 'updateTask'])->middleware(
+         'edit.kata.token.not.demo'
+      );
+   });
+
+   Route::group(['middleware' => 'edit.kata.token'], function () {
+      Route::patch('/solver', [TaskController::class, 'setSolverAbout']);
+      Route::post('/public-token/generate', [
+         TaskController::class,
+         'generatePublicToken',
+      ]);
+
+      Route::group(['prefix' => '/katas'], function () {
+         Route::get('/', [EditKataController::class, 'katas']);
+         Route::patch('/{kataId}/solution/{solutionId}/visibility', [
+            EditKataController::class,
+            'toggleKataVisibility',
+         ]);
+         Route::patch('/{kataId}/hide', [
+            EditKataController::class,
+            'hideAllSolutions',
+         ]);
+         Route::match(
+            ['patch', 'delete'],
+            '/{kataId}/solution/{solutionId}/comment',
+            [EditKataController::class, 'setComment']
+         );
+      });
+   });
 });
+
+Route::group(
+   [
+      'prefix' => '/public/{publicToken}',
+      'middleware' => 'public.kata.token',
+   ],
+   function () {
+      Route::get('/', [PublicKataController::class, 'info']);
+   }
+);
