@@ -13,7 +13,8 @@ class CreateTasksTable extends Migration
          $table->bigIncrements('id');
          $table->string('edit_token')->unique();
          $table->string('public_token')->unique();
-         $table->boolean('status')->default(TaskStatusType::Added);
+         $table->string('status')->default(TaskStatusType::Added);
+         $table->boolean('enabled')->default(true);
          $table->ipAddress('ip');
          $table->timestamps();
       });
