@@ -251,6 +251,9 @@ class CodewarsCrawler
     */
    private function authorizeAccountWithLoginPassword($login, $password): void
    {
+      // Reset cookies. Because in queue:work mode client is not recreating
+      // But we need clean http client for new requests
+      $this->httpClient->setCookies('', self::COOKIES_DOMAIN);
       [, , $authPageHTML] = $this->httpClient->get(self::AUTH_URL);
       $token = $this->codewarsHtmlParser->getAuthToken($authPageHTML);
 
