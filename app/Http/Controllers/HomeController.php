@@ -8,6 +8,6 @@ class HomeController extends Controller
 {
    public function index(CodewarsCrawler $parser)
    {
-      return 'It\'s alive!';
+      return ['It\'s alive!'];
    }
 }
