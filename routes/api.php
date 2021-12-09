@@ -17,13 +17,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/edit/create-task', [TaskController::class, 'createTask']);
+Route::post('/edit/create-task', [
+   TaskController::class,
+   'createTask',
+])->middleware('throttle:10,60');
 
 Route::group(['prefix' => '/edit/{editToken}'], function () {
    Route::group(['middleware' => 'edit.kata.token.enabled'], function () {
       Route::get('/status', [TaskController::class, 'getTaskStatus']);
       Route::post('/update', [TaskController::class, 'updateTask'])->middleware(
-         'edit.kata.token.not.demo'
+         ['edit.kata.token.not.demo', 'throttle:10,60']
       );
    });
 
