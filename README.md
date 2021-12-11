@@ -1,3 +1,14 @@
+# CodeShare
+
+[CodeShare.click](https://codeshare.click) - сервис для того чтобы делиться кодом решенных задач с сайта Codewars, например, с работодателями.
+Сервис загружает решенные Вами задачи, затем можно оставить только нужные решения и добавить к ним комментарии. В итоге севрис сгенерирует ссылку, которой можно делиться для показа своих решений задач.
+
+Например, [решенные мною задачи](https://codeshare.click/solutions/8510578a88503808c6fc367b0c2c911f)
+
+## Back-end часть
+Этот репозиторий содержит бэкэнд для сервиса CodeShare.
+Фронтэнд часть находится [здесь](https://github.com/kotolav/codeshare_frontend)
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
