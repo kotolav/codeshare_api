@@ -25,7 +25,7 @@ function tokenMiddlewareHelper(
          if ($task->status->value !== TaskStatusType::Done) {
             return response(
                ['error' => 'Task not done', 'error_code' => 1],
-               200
+               403
             );
          } else {
             return response(
